@@ -93,7 +93,7 @@ class OKExClient extends BasicClient {
       this._wss.send(
         JSON.stringify({
           op: "subscribe",
-          args: [`spot/trade:${remote_id}`],
+          args: remote_id.indexOf('SWAP') >= 0 ? [`swap/trade:${remote_id}`] : [`spot/trade:${remote_id}`],
         })
       );
     });
@@ -103,7 +103,7 @@ class OKExClient extends BasicClient {
     this._wss.send(
       JSON.stringify({
         op: "unsubscribe",
-        args: [`spot/trade:${remote_id}`],
+        args: remote_id.indexOf('SWAP') >= 0 ? [`swap/trade:${remote_id}`] : [`spot/trade:${remote_id}`],
       })
     );
   }
@@ -189,13 +189,13 @@ class OKExClient extends BasicClient {
     }
 
     // tickers
-    if (msg.table === "spot/ticker") {
+    if (msg.table === "spot/ticker" || msg.table === "swap/ticker") {
       this._processTicker(msg);
       return;
     }
 
     // trades
-    if (msg.table === "spot/trade") {
+    if (msg.table === "spot/trade" || msg.table === "swap/trade") {
       this._processTrades(msg);
       return;
     }
