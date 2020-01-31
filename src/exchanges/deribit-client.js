@@ -4,7 +4,7 @@ const BasicClient = require("../basic-client");
 const Ticker = require("../ticker");
 const Trade = require("../trade");
 
-export default class DeribitClient extends BasicClient {
+class DeribitClient extends BasicClient {
   /**
    * Implements deribit V2 API
    * https://docs.deribit.com/v2/#deribit-api-v2-0-0
@@ -231,3 +231,5 @@ export default class DeribitClient extends BasicClient {
     });
   }
 }
+
+module.exports = DeribitClient;
