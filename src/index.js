@@ -10,6 +10,7 @@ const bittrex = require("./exchanges/bittrex-client");
 const cex = require("./exchanges/cex-client");
 const coinbasepro = require("./exchanges/coinbasepro-client");
 const coinex = require("./exchanges/coinex-client");
+const deribit = require('./exchanges/deribit-client');
 const ethfinex = require("./exchanges/ethfinex-client");
 const gateio = require("./exchanges/gateio-client");
 const gemini = require("./exchanges/gemini-client");
@@ -36,6 +37,7 @@ module.exports = {
   cex,
   coinbasepro,
   coinex,
+  deribit,
   ethfinex,
   gateio,
   gemini,
